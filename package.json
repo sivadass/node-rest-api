@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "SENDGRID_API_KEY='SG.WTv7Yx3zT5Wbsk1aeuT8HQ.d4EZbX1e4IsU5ficn-aoxsXhUN42fIDFmQoDgpNnx9Anodemon' node index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@hapi/joi": "^15.1.0",
+    "@sendgrid/mail": "^6.4.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",

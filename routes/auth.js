@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../model/User");
 const { registerValidation, loginValidation } = require("../validation");
+const sendEmail = require("../utils/sendMail");
 
 router.post("/register", async (req, res) => {
   const { error } = registerValidation(req.body);
@@ -21,6 +22,14 @@ router.post("/register", async (req, res) => {
   });
   try {
     const savedUser = await user.save();
+    const msg = {
+      to: user.email,
+      from: "sivadass@simple-node-rest-api.herokuapp.com",
+      subject: "Registration successful!",
+      text: "Now you can login using your email and password",
+      html: `<strong>Welcome ${user.name}</strong>, enjoy this app!`
+    };
+    sendEmail(msg);
     res.send({ user: user._id });
   } catch (err) {
     res.status(400).send(err);
