@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "SENDGRID_API_KEY='SG.WTv7Yx3zT5Wbsk1aeuT8HQ.d4EZbX1e4IsU5ficn-aoxsXhUN42fIDFmQoDgpNnx9Anodemon' node index.js"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",

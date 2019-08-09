@@ -20,15 +20,18 @@ router.post("/register", async (req, res) => {
     email: req.body.email,
     password: hashPassword
   });
+
+  console.log("user", user);
   try {
     const savedUser = await user.save();
     const msg = {
-      to: user.email,
-      from: "sivadass@simple-node-rest-api.herokuapp.com",
+      to: "nsivadass@gmail.com",
+      from: "sivadass@node-api.com",
       subject: "Registration successful!",
       text: "Now you can login using your email and password",
       html: `<strong>Welcome ${user.name}</strong>, enjoy this app!`
     };
+    console.log(msg);
     sendEmail(msg);
     res.send({ user: user._id });
   } catch (err) {
