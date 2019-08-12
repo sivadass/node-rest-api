@@ -18,20 +18,19 @@ router.post("/register", async (req, res) => {
   const user = new User({
     name: req.body.name,
     email: req.body.email,
-    password: hashPassword
+    password: hashPassword,
+    role: req.body.role
   });
 
-  console.log("user", user);
   try {
     const savedUser = await user.save();
     const msg = {
-      to: "nsivadass@gmail.com",
+      to: user.email,
       from: "sivadass@node-api.com",
       subject: "Registration successful!",
       text: "Now you can login using your email and password",
       html: `<strong>Welcome ${user.name}</strong>, enjoy this app!`
     };
-    console.log(msg);
     sendEmail(msg);
     res.send({ user: user._id });
   } catch (err) {
@@ -49,9 +48,13 @@ router.post("/login", async (req, res) => {
   const validPass = await bcrypt.compare(req.body.password, user.password);
   if (!validPass) return res.status(400).send("Incorrect password!");
 
-  const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET, {
-    expiresIn: "1h"
-  });
+  const token = jwt.sign(
+    { _id: user._id, role: user.role },
+    process.env.TOKEN_SECRET,
+    {
+      expiresIn: "1h"
+    }
+  );
   res.header("auth-token", token).send(token);
 });
 

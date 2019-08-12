@@ -10,7 +10,7 @@ router.post("/", verify, async (req, res) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
-    createdBy: req.user._id
+    owner: req.user._id
   });
   try {
     const savedPost = await post.save();
@@ -21,8 +21,14 @@ router.post("/", verify, async (req, res) => {
 });
 router.get("/", verify, async (req, res) => {
   try {
-    const allPosts = await Post.find({});
-    res.send(allPosts);
+    console.log("user ===>", req.user);
+    if (req.user.role === "admin") {
+      const allPosts = await Post.find({});
+      res.send(allPosts);
+    } else {
+      const allPosts = await Post.find({ owner: req.user._id });
+      res.send(allPosts);
+    }
   } catch (err) {
     res.status(400).send(err);
   }
