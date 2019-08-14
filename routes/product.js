@@ -1,14 +1,19 @@
 const router = require("express").Router();
-const Post = require("../model/Post");
-const { postValidation } = require("../validation");
+const Product = require("../model/Product");
+const { productValidation } = require("../validation");
 const verify = require("./verifyToken");
 
 router.post("/", verify, async (req, res) => {
-  const { error } = postValidation(req.body);
+  const { error } = productValidation(req.body);
   if (error) return res.status(400).send(error.details[0].message);
-  const post = new Post({
-    title: req.body.title,
+  const post = new Product({
+    name: req.body.name,
     description: req.body.description,
+    price: req.body.price,
+    image: req.body.image,
+    quantity: req.body.quantity,
+    isActive: req.body.isActive,
+    category: req.body.category,
     owner: req.user._id
   });
   try {

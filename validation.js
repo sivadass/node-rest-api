@@ -43,6 +43,40 @@ const postValidation = data => {
   return Joi.validate(data, schema);
 };
 
+const categoryValidation = data => {
+  const schema = {
+    name: Joi.string()
+      .min(3)
+      .max(200)
+      .required()
+  };
+  return Joi.validate(data, schema);
+};
+
+const productValidation = data => {
+  const schema = {
+    name: Joi.string()
+      .min(6)
+      .max(200)
+      .required(),
+    description: Joi.string()
+      .min(20)
+      .required(),
+    image: Joi.string()
+      .min(20)
+      .required(),
+    price: Joi.number()
+      .min(20)
+      .required(),
+    category: Joi.string()
+      .min(20)
+      .required()
+  };
+  return Joi.validate(data, schema);
+};
+
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.postValidation = postValidation;
+module.exports.productValidation = productValidation;
+module.exports.categoryValidation = categoryValidation;

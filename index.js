@@ -6,6 +6,8 @@ const dotenv = require("dotenv");
 // import routes
 const authRoute = require("./routes/auth");
 const postRoute = require("./routes/post");
+const productRoute = require("./routes/product");
+const categoryRoute = require("./routes/category");
 // config env variables
 dotenv.config();
 
@@ -21,6 +23,8 @@ app.use(express.json());
 // route middlewares
 app.use("/api/user", authRoute);
 app.use("/api/post", postRoute);
+app.use("/api/product", productRoute);
+app.use("/api/category", categoryRoute);
 app.get("/", (req, res) => {
   res.send("🌍 Node Rest API server is up and running 🚀 🚀 🚀");
 });
