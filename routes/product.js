@@ -25,14 +25,8 @@ router.post("/", verify, async (req, res) => {
 });
 router.get("/", verify, async (req, res) => {
   try {
-    console.log("user ===>", req.user);
-    if (req.user.role === "admin") {
-      const allPosts = await Post.find({});
-      res.send(allPosts);
-    } else {
-      const allPosts = await Post.find({ owner: req.user._id });
-      res.send(allPosts);
-    }
+    const allProducts = await Product.find({});
+    res.send(allProducts);
   } catch (err) {
     res.status(400).send(err);
   }

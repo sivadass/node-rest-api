@@ -75,8 +75,25 @@ const productValidation = data => {
   return Joi.validate(data, schema);
 };
 
+const orderValidation = data => {
+  const productItem = Joi.object().keys({
+    product: Joi.string().required(),
+    quantity: Joi.number()
+      .min(1)
+      .required()
+  });
+
+  const schema = {
+    items: Joi.array()
+      .items(productItem)
+      .required()
+  };
+  return Joi.validate(data, schema);
+};
+
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.postValidation = postValidation;
 module.exports.productValidation = productValidation;
 module.exports.categoryValidation = categoryValidation;
+module.exports.orderValidation = orderValidation;

@@ -8,12 +8,16 @@ const authRoute = require("./routes/auth");
 const postRoute = require("./routes/post");
 const productRoute = require("./routes/product");
 const categoryRoute = require("./routes/category");
+const orderRoute = require("./routes/order");
+
 // config env variables
 dotenv.config();
 
 // connect to db
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () =>
-  console.log("Connected to Mongo Atlas DB")
+mongoose.connect(
+  process.env.DB_CONNECT,
+  { useNewUrlParser: true, useFindAndModify: false },
+  () => console.log("Connected to Mongo Atlas DB")
 );
 
 // Middle ware
@@ -25,6 +29,7 @@ app.use("/api/user", authRoute);
 app.use("/api/post", postRoute);
 app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
+app.use("/api/order", orderRoute);
 app.get("/", (req, res) => {
   res.send("🌍 Node Rest API server is up and running 🚀 🚀 🚀");
 });

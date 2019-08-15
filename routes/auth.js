@@ -52,7 +52,7 @@ router.post("/login", async (req, res) => {
     { _id: user._id, role: user.role },
     process.env.TOKEN_SECRET,
     {
-      expiresIn: "1h"
+      expiresIn: "24h"
     }
   );
   res.header("auth-token", token).send(token);

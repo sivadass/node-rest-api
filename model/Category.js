@@ -4,7 +4,8 @@ const categorySchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, "Category name cannot be empty!"]
+      required: [true, "Category name cannot be empty!"],
+      unique: true
     }
   },
   {
