@@ -17,7 +17,7 @@ dotenv.config();
 mongoose.connect(
   process.env.DB_CONNECT,
   { useNewUrlParser: true, useFindAndModify: false },
-  () => console.log("Connected to Mongo Atlas DB")
+  () => console.log("🌍 ==> Connected to Mongo Atlas DB 🔥")
 );
 
 // Middle ware
@@ -31,9 +31,9 @@ app.use("/api/product", productRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/order", orderRoute);
 app.get("/", (req, res) => {
-  res.send("🌍 Node Rest API server is up and running 🚀 🚀 🚀");
+  res.send("🌍 ==> Node Rest API server is up and running 🔥");
 });
 
 app.listen(process.env.PORT || 3000, () =>
-  console.log("🔥🔥🔥 Node Rest API server is on 🔥🔥🔥")
+  console.log("🌍  ==> Node Rest API server is on 🔥")
 );

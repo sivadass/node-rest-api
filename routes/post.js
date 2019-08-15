@@ -20,7 +20,6 @@ router.post("/", verify, async (req, res) => {
 });
 router.get("/", verify, async (req, res) => {
   try {
-    console.log("user ===>", req.user);
     if (req.user.role === "admin") {
       const allPosts = await Post.find({});
       res.send(allPosts);

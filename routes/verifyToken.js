@@ -8,7 +8,6 @@ module.exports = function auth(req, res, next) {
     req.user = verified;
     next();
   } catch (err) {
-    console.log("error ==>", err);
     res.status(400).send(err);
   }
 };

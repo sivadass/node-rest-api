@@ -46,7 +46,6 @@ router.get("/", verify, async (req, res) => {
 
 // Update status
 router.patch("/:id", verify, async (req, res) => {
-  console.log("....", req.params.id, req.body.status);
   try {
     await Order.findByIdAndUpdate(
       {
@@ -62,7 +61,6 @@ router.patch("/:id", verify, async (req, res) => {
         if (result) {
           res.send(result);
         } else {
-          console.log(err);
           res.status(400).send(err);
         }
       }
