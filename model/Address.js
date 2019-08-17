@@ -23,7 +23,9 @@ const addressSchema = new mongoose.Schema(
     },
     pincode: {
       type: Number,
-      required: true
+      required: true,
+      min: 6,
+      max: 6
     },
     phoneNumber: {
       type: Number,
